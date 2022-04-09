@@ -79,7 +79,7 @@ public class XanController {
         model.addAttribute("selectCategory", categoryRepository.findAll());
         model.addAttribute("counter", new CounterModel());
 
-        return "/addAdmin";
+        return "addAdmin";
 
     }
 
@@ -91,7 +91,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("counter", new CounterModel());
 
-        return "/editProductAdmin";
+        return "editProductAdmin";
 
     }
 
@@ -101,7 +101,7 @@ public class XanController {
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("categoryTake", new CategoryModel());
 
-        return "/editCategoryAdmin";
+        return "editCategoryAdmin";
 
     }
     @GetMapping("/admin/open/editCategory/{id}")
@@ -114,7 +114,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("categoryTake", new CategoryModel());
 
-        return "/formEditCategoryAdmin";
+        return "formEditCategoryAdmin";
     }
     @GetMapping("/admin/open/editProduct/{id}")
     public String adminOpenProduct(
@@ -127,7 +127,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("productTake", new ProductModel());
 
-        return "/formEditProductAdmin";
+        return "formEditProductAdmin";
     }
     @PostMapping("/admin/editCategory/{id}")
     public String editCategory(
@@ -172,7 +172,7 @@ public class XanController {
         model.addAttribute("product", new CategoryModel());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("categoryTake", new CategoryModel());
-        return "/editCategoryAdmin";
+        return "editCategoryAdmin";
     }
     @PostMapping("/admin/editProduct/{id}")
     public String editProduct(
@@ -205,7 +205,7 @@ public class XanController {
         model.addAttribute("category", new CategoryModel());
         model.addAttribute("product", productRepository.findAll());
         model.addAttribute("productTake", new CategoryModel());
-        return "/editProductAdmin";
+        return "editProductAdmin";
     }
     private void saveCategory(MultipartFile file) throws IOException {
         byte[] fileByte = file.getBytes();
@@ -236,7 +236,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("category", new CategoryModel());
         System.out.println(category);
-        return "/obn";
+        return "obn";
     }
     @GetMapping("/home")
     public String home(Model model) {
@@ -263,7 +263,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         System.out.println(productService.getProductOfCategory(a.getName()) + "- - - -" + a);
         model.addAttribute("products", productService.getProductOfCategory(a.getName()));
-        return "/category";
+        return "category";
     }
 
     @GetMapping("/delete/product/{id}")
@@ -273,7 +273,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("category", new CategoryModel());
         productRepository.deleteById(id);
-        return "/obn";
+        return "obn";
     }@GetMapping("/delete/category/{id}")
     public String deleteCategory(
             Model model,
@@ -281,7 +281,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("category", new CategoryModel());
         categoryRepository.deleteById(id);
-        return "/obn";
+        return "obn";
     }
 
     @PostMapping("/search")
@@ -293,13 +293,13 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
 
         System.out.println(product);
-        return "/category";
+        return "category";
     }
 
     @GetMapping("/open/product/{id}")
     public String openProduct(
             Model model,
-            @PathVariable int id) {
+            @PathVariable int id){
         ProductModel productModel1 = productService.getProduct(id);
 
         model.addAttribute("product", new ProductModel());
@@ -308,7 +308,7 @@ public class XanController {
         model.addAttribute("comentTakeId", new ProductModel());
 
         model.addAttribute("productOpen", productRepository.getById(id));
-        return "/open";
+        return "open";
     }
     @PostMapping("/addComent")
     public String addComent(Model model, @ModelAttribute ComentModel coment, @ModelAttribute ProductModel comentTakeId) {
@@ -337,7 +337,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("productOpen", productRepository.getById(comentTakeId.getId()));
         model.addAttribute("comentAll", productModel1.getComentModels());
-        return "/open";
+        return "open";
     }
 
 @GetMapping("/{id}/deleteComent")
@@ -352,7 +352,7 @@ public class XanController {
     model.addAttribute("product", new ProductModel());
     model.addAttribute("productOpen", productRepository.getById(id));
     model.addAttribute("comentAll", productModel1.getComentModels());
-    return "/open";
+    return "open";
 }
 
 }
