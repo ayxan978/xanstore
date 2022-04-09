@@ -245,7 +245,7 @@ public class XanController {
         model.addAttribute("product", new ProductModel());
         model.addAttribute("counter", new CounterModel());
 
-        return "/index";
+        return "index";
     }
     @GetMapping("/open/category/{id}")
     public String openCategory(
